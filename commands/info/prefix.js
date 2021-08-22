@@ -2,7 +2,7 @@ const prefixModel = require('../../models/prefix')
 
 module.exports = {
     name: 'prefix',
-    description: 'The prefix of the bot.',
+    description: 'Change the prefix of the bot.',
     async execute(message, args, client) {
         const data = await prefixModel.findOne({
             GuildID: message.guild.id

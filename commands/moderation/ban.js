@@ -7,6 +7,14 @@ module.exports = {
     usage: '<@member or member id>',
     async execute(message, args, client) {
         if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send(client.noperm)
+        if(!message.guild.me.hasPermission('BAN_MEMBERS')) return message.channel.send(
+            new MessageEmbed()
+            .setTitle('Oopsie Poopsie!')
+            .setDescription('I don\'t have permission to ban people in this server. Please give me permission to do that!')
+            .setColor(client.color)
+            .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
+            .setTimestamp()
+        )
 
         const member = message.mentions.members.first() || message.guild.members.cache.find(user => user.id === args[0])
         let reason = args.slice(1).join(' ')

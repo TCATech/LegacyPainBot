@@ -10,7 +10,14 @@ module.exports = {
         const db = await prefixModel.findOne({
             GuildID: message.guild.id
         })
-        const prefix = db.Prefix ? db.Prefix : client.config.prefix
+
+        let prefix = ''
+        if(db) {
+          prefix = db.Prefix
+        } else {
+          prefix = client.config.prefix
+        }
+
         if (!args[0]) {
             let categories = [];
 
@@ -61,7 +68,7 @@ module.exports = {
               .setDescription(
                 `Use \`${prefix}help\` followed by a command name to get more additional information on a command. For example: \`${prefix}help ban\`.`
               )
-              .setColor(message.guild.me.displayColor)
+              .setColor(client.color)
               .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
               .setTimestamp()
             return message.channel.send(embed);

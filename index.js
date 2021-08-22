@@ -9,15 +9,15 @@ const prefix = require('./models/prefix')
 client.noperm = new Discord.MessageEmbed()
 .setTitle('Oopsie Poopsie!')
 .setDescription(`You don't have permission to use that command as you are not a staff member.`)
-.setColor(process.env.embedColor)
-.setFooter(process.env.embedFooterText, process.env.pfpImage)
+.setColor(client.color)
+.setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
 .setTimestamp()
 
 client.oopsiepoopsie = new Discord.MessageEmbed()
 .setTitle('Oopsie Poopsie!')
 .setDescription(`Seems like something went wrong on my end. Please try again!`)
-.setColor(process.env.embedColor)
-.setFooter(process.env.embedFooterText, process.env.pfpImage)
+.setColor(client.color)
+.setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
 .setTimestamp()
 
 const fs = require('fs')
@@ -68,6 +68,12 @@ client.on("message", async message => {
     serverPrefix = client.config.prefix
 
   }
+
+  
+  client.color =
+  message.guild.me.displayHexColor === "#000000"
+    ? "#ffffff"
+    : message.guild.me.displayHexColor;
 
   if(!message.content.startsWith(serverPrefix)) return
   const args = message.content.slice(serverPrefix.length).split(/ +/)
