@@ -1,20 +1,12 @@
 const { MessageEmbed } = require('discord.js')
-const config = require('../../config.json')
-
-const nopermEmbed = new MessageEmbed()
-.setTitle('Oopsie Poopsie!')
-.setDescription(`You don't have permission to use that command as you are not a staff member.`)
-.setColor(config.embedColor)
-.setFooter(config.embedFooterText, config.pfpImage)
-.setTimestamp()
 
 module.exports = {
     name: 'unban',
     description: 'Unbans a member from the server.',
     usage: '<member id>',
+    userPerms: ['BAN_MEMBERS'],
+    botPerms: ['BAN_MEMBERS'],
     async execute(message, args, client) {
-        if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send(nopermEmbed)
-
         const userID = args[0]
         let reason = args.slice(1).join(' ')
         if(!reason) reason = 'No reason specified.'
@@ -27,7 +19,7 @@ module.exports = {
                 const embed = new MessageEmbed()
                 .setTitle('And here they come...')
                 .setDescription(`Succesfully unbanned the user with the ID of ${args[0]}.`)
-                .setColor(message.guild.me.displayColor)
+                .setColor(client.color)
                 .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                 .setTimestamp()
                 message.channel.send(embed)

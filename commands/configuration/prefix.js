@@ -1,14 +1,28 @@
 const prefixModel = require('../../models/prefix')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
     name: 'prefix',
     description: 'Change the prefix of the bot.',
+    usage: '<new prefix>',
+    userPerms: ['MANAGE_GUILD'],
     async execute(message, args, client) {
         const data = await prefixModel.findOne({
             GuildID: message.guild.id
         })
 
-        if(!args[0]) return message.reply('You must provide a **new prefix**!');
+        let currentPrefix = ''
+        if(data) {
+          currentPrefix = data.Prefix
+        } else {
+          currentPrefix = client.config.prefix
+        }
+
+        if(!args[0]) return message.channel.send(
+          new MessageEmbed()
+          .setDescription(`This server's prefix is **${currentPrefix}**`)
+          .setColor(client.color)
+        )
         if(args[0].length > 5) return message.reply('Your new prefix must be under \`5\` characters!')
         if(data) {
             await prefixModel.findOneAndRemove({

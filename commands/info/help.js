@@ -6,6 +6,7 @@ const prefixModel = require('../../models/prefix')
 module.exports = {
     name: 'help',
     description: 'Get more info about specific commands.',
+    usage: '<command>',
     async execute(message, args, client) {
         const db = await prefixModel.findOne({
             GuildID: message.guild.id
@@ -24,16 +25,19 @@ module.exports = {
             const diremotes = {
               info: "📰",
               moderation: "🔨",
-              utils: "⚙",
+              configuration: "⚙",
               wip: '👨‍💻',
               warns: '📢',
               suggestions: '📊',
               fun: '⚽',
               roles: '📛',
-              games: '🎮'
+              games: '🎮',
+              music: '🎧'
             }
             readdirSync("./commands/").forEach((dir) => {
-              const dirName = `${diremotes[dir]} ${dir.toUpperCase()}`
+              let dirName = `${diremotes[dir]} ${dir.toUpperCase()}`
+              if(diremotes[dir] === undefined) dirName = `${dir.toUpperCase()}`
+              
               const commands = readdirSync(`./commands/${dir}/`).filter((file) =>
                 file.endsWith(".js")
               );
@@ -45,7 +49,7 @@ module.exports = {
               }).map((command) => {
                 let file = require(`../../commands/${dir}/${command}`);
       
-                if (!file.name) return "No command name.";
+                if (!file.name) return "";
       
                 let name = file.name.replace(".js", "");
       
@@ -56,7 +60,8 @@ module.exports = {
       
               data = {
                 name: dirName,
-                value: cmds.length === 0 ? "In progress." : cmds.join(" "),
+                value: cmds.length === 0 ? '' : cmds.join(" "),
+                inline: true,
               };
       
               categories.push(data);
@@ -110,7 +115,7 @@ module.exports = {
                   ? `\`${prefix}${command.name} ${command.usage}\``
                   : `\`${prefix}${command.name}\``,
               )
-              .setColor(message.guild.me.displayColor)
+              .setColor(client.color)
               .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
               .setTimestamp()
             return message.channel.send(embed);

@@ -4,6 +4,8 @@ module.exports = {
     name: 'avatar',
     aliases: ['pfp'],
     description: 'Displays a member\'s avatar.',
+    usage: '<member (optional)>',
+    cooldown: '10',
     async execute(message, args, client) {
         const user = message.mentions.users.first() || message.author
         const embed = new MessageEmbed()
