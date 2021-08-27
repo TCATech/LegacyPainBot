@@ -34,7 +34,7 @@ module.exports = {
           inline: false,
         },
         {
-          name: "Owner",
+          name: "<:owner:585789630800986114> Owner",
           value: message.guild.owner,
           inline: true,
         },
@@ -45,36 +45,36 @@ module.exports = {
         },
         {
           name: "Member Count",
-          value: `${message.guild.memberCount} **total**, ${
+          value: `${message.guild.memberCount} **total**, <:members:658538493470965787> ${
             message.guild.members.cache.filter((member) => !member.user.bot)
               .size
-          } **humans**, and ${
+          } **humans**, and <:verifiedbotdev:853277205264859156> ${
             message.guild.members.cache.filter((member) => member.user.bot).size
           } **bots**.`,
           inline: false,
         },
         {
           name: "Channels",
-          value: `#️⃣ ${
+          value: `<:channel:585783907841212418> ${
             channels.filter((channel) => channel.type === "text").size
-          } **text** channels and 🔊 ${
+          } **text** channels and <:voice:585783907673440266> ${
             channels.filter((channel) => channel.type === "voice").size
           } **voice** channels`,
           inline: true,
         },
         {
-          name: "Emojis",
+          name: "<:emoji_ghost:658538492321595393> Emojis",
           value: message.guild.emojis.cache.size,
           inline: true,
         },
         {
-          name: "Roles",
+          name: "<:role:808826577785716756> Roles",
           value: message.guild.roles.cache.size,
           inline: true,
         },
         {
-          name: "Creation Date",
-          value: `📅 ${message.guild.createdAt.toLocaleString()}`,
+          name: "📅 Creation Date",
+          value: `${message.guild.createdAt.toLocaleString()}`,
           inline: false,
         }
       )

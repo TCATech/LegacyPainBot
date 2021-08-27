@@ -4,6 +4,7 @@ let client = new Discord.Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
   restTimeOffset: 0,
 });
+require('discord-buttons')(client)
 require("dotenv").config();
 const server = require("./server.js");
 const Distube = require("distube");

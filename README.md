@@ -1,5 +1,4 @@
 # PainBot
-
 The funniest bot that you will ever need.
 
 # Features
@@ -8,7 +7,7 @@ The funniest bot that you will ever need.
 
 - Music: Listen to some cool songs!
 
-- And more coming soon!
+- Games: Play some rock paper scissors against your friends, or try typing a word as fast as you can!
 
 # Commands
 
@@ -21,11 +20,9 @@ The funniest bot that you will ever need.
 `>unban <user id>` | Unbans a member from the server.
 
 `>mute <@user or user id> [time] [reason]` | Mutes a member from the server.
-
 - Needs a Muted role.
 
 `>unmute <@user or user id> [reason]` | Unmutes a member from the server.
-
 - Needs a Muted role.
 
 `>purge <amount of messages>` | Deletes a specific amount of messages.
@@ -52,6 +49,16 @@ The funniest bot that you will ever need.
 `>stop` | Stops the current song and clears the queue.
 
 `>volume <a number between 1 - 100>` | Changes the volume of the song.
+
+<br />
+
+### Games
+
+`>fasttype [your word of choice]` | Try typing a word as fast as you can!
+
+`>rps [@user or user id]` | Play rock paper scissors against your friends, or if you're lonely you can play against PainBot!
+
+`>snek` | Just your regular old snake, but in Discord!
 
 <br />
 
