@@ -51,8 +51,9 @@ module.exports = {
         const cmds = commands
           .filter((command) => {
             let file = require(`../../commands/${dir}/${command}`);
+            const hide = file.hidden || file.wip
 
-            return !file.hidden;
+            return !hide;
           })
           .map((command) => {
             let file = require(`../../commands/${dir}/${command}`);

@@ -4,7 +4,7 @@ module.exports = {
   name: "volume",
   description: "Chanes the volume of the song.",
   usage: "<a number between 1 - 100>",
-  aliases: ["vol"],
+  aliases: ["vol", 'v'],
   async execute(message, args, client) {
     if (!message.member.voice.channel) {
       const volumeError = new MessageEmbed()

@@ -152,7 +152,7 @@ client.on("message", async (message) => {
   const command =
     client.commands.get(cmd) ||
     client.commands.find((a) => a.aliases && a.aliases.includes(cmd));
-  // if(command.wip === true && message.author.id !== config.ownerID) return message.reply('This command is currently a **W**ork **I**n **P**rogress.')
+  if(command.wip && message.author.id !== client.config.ownerID) return message.reply('This command is currently a **W**ork **I**n **P**rogress.')
 
   if (!command) return message.delete();
   if (

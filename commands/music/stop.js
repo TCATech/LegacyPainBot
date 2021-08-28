@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "stop",
   description: "Stops the current song and clears the queue.",
+  aliases: ['s'],
   async execute(message, args, client) {
     if (!message.member.voice.channel) {
       const stopError = new MessageEmbed()

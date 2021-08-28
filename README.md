@@ -72,11 +72,15 @@ The funniest bot that you will ever need.
 
 ### Fun
 
+`>calc` | Calculate some math problems in Discord!
+
 `>cat` | Fetches you a cute cat.
 
 `>dog` | Fetches you a cute dog.
 
-`>calc` | Calculate some math problems in Discord!
+`>coin` | Flips a coin for you.
+
+`>meme` | Fetches you a very funny meme.
 
 <br />
 

@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "loop",
   description: "Toggles loop.",
-  aliases: ["loops", "repeat"],
+  aliases: ["loops", "repeat", 'l', 'r'],
   usage: '[song, queue, or off]',
   async execute(message, args, client) {
     if (!message.member.voice.channel) {
