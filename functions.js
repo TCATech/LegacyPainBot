@@ -1,3 +1,5 @@
+const { words } = require("./words")
+
 module.exports = {
   promptMessage: async function (message, author, time, validReactions) {
     // We put in the time as seconds, with this it's being transfered to MS
@@ -16,4 +18,11 @@ module.exports = {
       .awaitReactions(filter, { max: 1, time: time })
       .then((collected) => collected.first() && collected.first().emoji.name);
   },
+  getRandomWord: function(length) {
+		const word = [];
+		for (let i = 0; i < length; i++) {
+			word.push(words[Math.floor(Math.random() * words.length)]);
+		}
+		return word;
+	},
 };

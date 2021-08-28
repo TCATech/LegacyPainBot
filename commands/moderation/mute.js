@@ -4,7 +4,7 @@ const ms = require("ms");
 module.exports = {
   name: "mute",
   description: "Mutes a member from the server.",
-  usage: "<@member or member id> <how long to mute the member (optional)>",
+  usage: "<@user or user ID> [time]",
   userPerms: ["MANAGE_MEMBERS"],
   botPerms: ["MANAGE_MEMBERS"],
   async execute(message, args, client) {

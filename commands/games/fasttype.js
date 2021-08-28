@@ -1,4 +1,4 @@
-const { words } = require("../../ftwords");
+const { words } = require("../../words");
 const { FastType } = require("weky");
 
 module.exports = {

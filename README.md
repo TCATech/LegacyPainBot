@@ -60,6 +60,8 @@ The funniest bot that you will ever need.
 
 ### Games
 
+`>chaos` | Try to find words in a sea of random letters!
+
 `>fasttype [your word of choice]` | Try typing a word as fast as you can!
 
 `>rps [@user or user ID]` | Play rock paper scissors against your friends, or if you're lonely you can play against PainBot!
@@ -73,6 +75,8 @@ The funniest bot that you will ever need.
 `>cat` | Fetches you a cute cat.
 
 `>dog` | Fetches you a cute dog.
+
+`>calc` | Calculate some math problems in Discord!
 
 <br />
 
