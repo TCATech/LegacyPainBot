@@ -6,8 +6,8 @@ const prefixModel = require("../../models/prefix");
 
 module.exports = {
   name: "help",
-  description: "Get more info about specific commands.",
-  usage: "<command>",
+  description: "Gives you some info on a command.",
+  usage: "[command name/alias]",
   async execute(message, args, client) {
     const db = await prefixModel.findOne({
       GuildID: message.guild.id,

@@ -28,9 +28,7 @@ module.exports = {
     } catch (error) {
       console.log(error);
       return message.channel.send(
-        `There was an error trying to disconnect from the VC!\n${client.error(
-          error
-        )}`
+        `There was an error trying to join your VC!\n${client.error(error)}`
       );
     }
   },

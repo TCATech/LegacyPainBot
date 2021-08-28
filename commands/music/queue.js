@@ -9,9 +9,7 @@ module.exports = {
     if (!queue) {
       const queueError = new MessageEmbed()
         .setTitle("Oopsie Poopsie!")
-        .setDescription(
-          "There is currently nothing playing. Why would you even do this to yourself?"
-        )
+        .setDescription("Nothing is currently playing in this server.")
         .setColor(client.color)
         .setFooter(
           client.user.username,

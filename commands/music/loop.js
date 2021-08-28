@@ -22,9 +22,7 @@ module.exports = {
     if (!client.distube.isPlaying(message)) {
       const loopError2 = new MessageEmbed()
         .setTitle("Oopsie Poopsie!")
-        .setDescription(
-          "There is currently nothing playing. Why would you even do this to yourself?"
-        )
+        .setDescription("Nothing is currently playing in this server.")
         .setColor(client.color)
         .setFooter(
           client.user.username,
@@ -52,7 +50,7 @@ module.exports = {
     mode = mode ? (mode == 2 ? "Repeat queue" : "Repeat song") : "Off";
     const embed = new MessageEmbed()
       .setTitle("Here we go.")
-      .setDescription(`Set the loop to \`${mode}\`.`)
+      .setDescription(`Set the loop mode to \`${mode}\`.`)
       .setColor(client.color)
       .setFooter(
         client.user.username,
