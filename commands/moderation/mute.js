@@ -5,24 +5,9 @@ module.exports = {
   name: "mute",
   description: "Mutes the mentioned member.",
   usage: "<@member or member id> <how long to mute the member (optional)>",
+  userPerms: ["MANAGE_MEMBERS"],
+  botPerms: ["MANAGE_MEMBERS"],
   async execute(message, args, client) {
-    if (!message.member.hasPermission("MANAGE_ROLES"))
-      return message.channel.send(client.noperm);
-    if (!message.guild.me.hasPermission(["MANAGE_MEMBERS", "MANAGE_ROLES"]))
-      return message.channel.send(
-        new MessageEmbed()
-          .setTitle("Oopsie Poopsie!")
-          .setDescription(
-            "I don't have permission to give people the `Muted` role in this server. Please give me permission to do that!"
-          )
-          .setColor(client.color)
-          .setFooter(
-            client.user.username,
-            client.user.displayAvatarURL({ dynamic: true })
-          )
-          .setTimestamp()
-      );
-
     const target =
       message.mentions.members.first() ||
       message.guild.roles.cache.get(args[0]);

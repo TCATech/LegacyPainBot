@@ -1,4 +1,5 @@
 # PainBot
+
 The funniest bot that you will ever need.
 
 # Features
@@ -20,9 +21,11 @@ The funniest bot that you will ever need.
 `>unban <user id>` | Unbans a member from the server.
 
 `>mute <@user or user id> [time] [reason]` | Mutes a member from the server.
+
 - Needs a Muted role.
 
 `>unmute <@user or user id> [reason]` | Unmutes a member from the server.
+
 - Needs a Muted role.
 
 `>purge <amount of messages>` | Deletes a specific amount of messages.

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { readdirSync } = require("fs");
-const button = require('discord-buttons')
+const button = require("discord-buttons");
 
 const prefixModel = require("../../models/prefix");
 
@@ -36,9 +36,9 @@ module.exports = {
         music: "🎧",
       };
       const invite = new button.MessageButton()
-      .setLabel('Invite me to your server!')
-      .setURL('https://dsc.gg/PainBotXD')
-      .setStyle('url')
+        .setLabel("Invite me to your server!")
+        .setURL("https://dsc.gg/PainBotXD")
+        .setStyle("url");
 
       readdirSync("./commands/").forEach((dir) => {
         let dirName = `${diremotes[dir]} ${dir.toUpperCase()}`;

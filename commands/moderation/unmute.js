@@ -5,7 +5,7 @@ module.exports = {
   description: "Unmutes the mentioned member.",
   usage: "<@member or member id> <how long to mute the member (optional)>",
   userPerms: ["MANAGE_MEMBERS"],
-  botPerms: ["MANAGE_ROLES", "MANAGE_MEMBERS"],
+  botPerms: ["MANAGE_MEMBERS"],
   async execute(message, args, client) {
     const target =
       message.mentions.members.first() ||

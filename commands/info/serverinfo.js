@@ -45,7 +45,9 @@ module.exports = {
         },
         {
           name: "Member Count",
-          value: `${message.guild.memberCount} **total**, <:members:658538493470965787> ${
+          value: `${
+            message.guild.memberCount
+          } **total**, <:members:658538493470965787> ${
             message.guild.members.cache.filter((member) => !member.user.bot)
               .size
           } **humans**, and <:verifiedbotdev:853277205264859156> ${
