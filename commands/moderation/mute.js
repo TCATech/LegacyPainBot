@@ -3,7 +3,7 @@ const ms = require("ms");
 
 module.exports = {
   name: "mute",
-  description: "Mutes the mentioned member.",
+  description: "Mutes a member from the server.",
   usage: "<@member or member id> <how long to mute the member (optional)>",
   userPerms: ["MANAGE_MEMBERS"],
   botPerms: ["MANAGE_MEMBERS"],

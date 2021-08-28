@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "kick",
   description: "Kicks a member from the server.",
-  usage: "<@member or member id>",
+  usage: "<@user or user ID>",
   userPerms: ["KICK_MEMBERS"],
   botPerms: ["KICK_MEMBERS"],
   async execute(message, args, client) {

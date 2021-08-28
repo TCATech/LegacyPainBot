@@ -5,6 +5,7 @@ module.exports = {
   name: "fasttype",
   description: "Try typing a simple word as fast as you can!",
   aliases: ["ft", "fast", "type"],
+  usage: '[your word of choice]',
   async execute(message, args, client) {
     const word =
       args.join(" ") || words[Math.floor(Math.random() * words.length)];

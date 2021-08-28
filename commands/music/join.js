@@ -1,6 +1,6 @@
 module.exports = {
   name: "join",
-  description: "Joins a VC",
+  description: "Makes the bot join the voice channel that you are in.",
   aliases: ["summon", "enter"],
   async execute(message, args, client) {
     const voiceChannel = message.member.voice.channel;

@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "resume",
-  description: "Resumes the music.",
+  description: "Resumes the song.",
   aliases: ["resume", "unpause"],
   async execute(message, args, client) {
     if (!message.member.voice.channel) {

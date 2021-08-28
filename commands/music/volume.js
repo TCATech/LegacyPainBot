@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "volume",
-  description: "Changes Volume",
-  usage: "<number from 1 - 100>",
+  description: "Chanes the volume of the song.",
+  usage: "<a number between 1 - 100>",
   aliases: ["vol"],
   async execute(message, args, client) {
     if (!message.member.voice.channel) {

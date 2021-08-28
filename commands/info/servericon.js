@@ -2,7 +2,7 @@ let { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "servericon",
-  description: "Displays the server icon.",
+  description: "Shows you what icon your server has.",
   async execute(message, args, client) {
     const embed = new MessageEmbed()
       .setTitle(`${message.guild.name}'s Icon`)

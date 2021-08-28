@@ -2,7 +2,7 @@ const { MessageEmbed, MessageManager } = require("discord.js");
 
 module.exports = {
   name: "pause",
-  description: "Pauses the currently playing music.",
+  description: "Pauses the song.",
   async execute(message, args, client) {
     if (!message.member.voice.channel) {
       const pauseError = new MessageEmbed()

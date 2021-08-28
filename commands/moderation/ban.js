@@ -4,7 +4,7 @@ const config = require("../../config.json");
 module.exports = {
   name: "ban",
   description: "Bans a member from the server.",
-  usage: "<@member or member id>",
+  usage: "<@user or user ID> [reason]",
   userPerms: ["BAN_MEMBERS"],
   botPerms: ["BAN_MEMBERS"],
   async execute(message, args, client) {

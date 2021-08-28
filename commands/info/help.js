@@ -131,11 +131,18 @@ module.exports = {
             : `\`${prefix}${command.name}\``
         )
         .setColor(client.color)
-        .setFooter(
+        .setTimestamp();
+      if(command.usage) {
+        embed.setFooter(
+          '<> = Required | [] = Optional',
+          client.user.displayAvatarURL({ dynamic: true })
+        )
+      } else {
+        embed.setFooter(
           client.user.username,
           client.user.displayAvatarURL({ dynamic: true })
         )
-        .setTimestamp();
+      }
       return message.channel.send(embed);
     }
   },

@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "unmute",
-  description: "Unmutes the mentioned member.",
-  usage: "<@member or member id> <how long to mute the member (optional)>",
+  description: "Unmutes a membeer from the server.",
+  usage: "<@user or user ID>",
   userPerms: ["MANAGE_MEMBERS"],
   botPerms: ["MANAGE_MEMBERS"],
   async execute(message, args, client) {

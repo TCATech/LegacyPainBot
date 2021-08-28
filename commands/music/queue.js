@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "queue",
-  description: "Shows you what songs are currently playing.",
+  description: "Shows you the queue for your server.",
   aliases: ["q", "list"],
   async execute(message, args, client) {
     let queue = client.distube.getQueue(message);

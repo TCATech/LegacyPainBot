@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "seek",
-  description: "Seek through the song.",
-  usage: "<amount in seconds>",
+  description: "Seeks through the current song.",
+  usage: "<time to seek in seconds>",
   async execute(message, args, client) {
     if (!message.member.voice.channel) {
       const seekError = new MessageEmbed()

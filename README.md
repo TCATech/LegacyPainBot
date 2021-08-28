@@ -14,17 +14,17 @@ The funniest bot that you will ever need.
 
 ### Moderation
 
-`>kick <@user or user id>` | Kicks a member from the server.
+`>kick <@user or user ID>` | Kicks a member from the server.
 
-`>ban <@user or user id> [reason]` | Bans a member from the server.
+`>ban <@user or user ID> [reason]` | Bans a member from the server.
 
-`>unban <user id>` | Unbans a member from the server.
+`>unban <user ID>` | Unbans a member from the server.
 
-`>mute <@user or user id> [time] [reason]` | Mutes a member from the server.
+`>mute <@user or user ID> [time]` | Mutes a member from the server.
 
 - Needs a Muted role.
 
-`>unmute <@user or user id> [reason]` | Unmutes a member from the server.
+`>unmute <@user or user ID>` | Unmutes a member from the server.
 
 - Needs a Muted role.
 
@@ -34,14 +34,17 @@ The funniest bot that you will ever need.
 
 ### Music
 
-`>join` | Joins the voice channel that you are in.
+`>join` | Makes the bot join the voice channel that you are in.
 
-`>leave` | Leaves the voice channel that you are in.
+`>leave` | Makes the bot leave the voice channel that you are in.
 
 `>play <song name or URL>` | Plays a song in a voice channel.
+
 `>pause` | Pauses the song.
 
 `>resume` | Resumes the song.
+
+`>loop [song, queue, or off]` | Toggles loop.
 
 `>queue` | Shows you the queue for your server.
 
@@ -59,22 +62,34 @@ The funniest bot that you will ever need.
 
 `>fasttype [your word of choice]` | Try typing a word as fast as you can!
 
-`>rps [@user or user id]` | Play rock paper scissors against your friends, or if you're lonely you can play against PainBot!
+`>rps [@user or user ID]` | Play rock paper scissors against your friends, or if you're lonely you can play against PainBot!
 
 `>snek` | Just your regular old snake, but in Discord!
 
 <br />
 
+### Fun
+
+`>cat` | Fetches you a cute cat.
+
+`>dog` | Fetches you a cute dog.
+
+<br />
+
 ### Info
 
-`>avatar [@user or user id]` | Shows you what avatar someone has.
+`>avatar [@user or user ID]` | Shows you what avatar someone has.
 
 `>servericon` | Shows you what icon your server has.
 
 `>help [command name/alias]` | Gives you some info on a command.
 
-`>membercount` | The amount of members in your server.
+`>membercount` | Tells you the amount of members that are in your server.
 
 `>ping` | Pong!
 
-`>serverinfo` | Sends some info about your server.
+`>serverinfo` | Shows some info about your server.
+
+### Configuration
+
+`>prefix [new prefix]` | Changes the prefix of the bot.

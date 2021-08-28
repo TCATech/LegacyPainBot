@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "prefix",
   description: "Change the prefix of the bot.",
-  usage: "<new prefix>",
+  usage: "[new prefix]",
   userPerms: ["MANAGE_GUILD"],
   async execute(message, args, client) {
     const data = await prefixModel.findOne({

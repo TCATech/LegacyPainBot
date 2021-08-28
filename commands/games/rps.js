@@ -7,7 +7,8 @@ const chooseArr = ["🗻", "📰", "✂"];
 module.exports = {
   name: "rps",
   description:
-    "Play Rock Paper Scissors against other people, or even with PainBot!",
+    "Play rock paper scissors against your friends, or if you're lonely you can play against PainBot!",
+  usage: '[@user or user ID]',
   async execute(message, args, client) {
     const member = message.mentions.users.first();
     if (member)

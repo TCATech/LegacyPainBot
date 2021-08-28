@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "unban",
   description: "Unbans a member from the server.",
-  usage: "<member id>",
+  usage: "<user ID>",
   userPerms: ["BAN_MEMBERS"],
   botPerms: ["BAN_MEMBERS"],
   async execute(message, args, client) {

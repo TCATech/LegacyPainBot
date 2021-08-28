@@ -3,7 +3,7 @@ const config = require("../../config.json");
 
 module.exports = {
   name: "purge",
-  description: "Bulk deletes the amount of messages that you specify.",
+  description: "Deletes a specific amount of messages.",
   usage: "<amount of messages>",
   userPerms: ["MANAGE_MESSAGES"],
   botPerms: ["MANAGE_MESSAGES"],

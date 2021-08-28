@@ -4,6 +4,7 @@ module.exports = {
   name: "loop",
   description: "Toggles loop.",
   aliases: ["loops", "repeat"],
+  usage: '[song, queue, or off]',
   async execute(message, args, client) {
     if (!message.member.voice.channel) {
       const loopError = new MessageEmbed()

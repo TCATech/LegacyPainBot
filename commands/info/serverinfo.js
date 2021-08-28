@@ -19,7 +19,7 @@ const moment = require("moment");
 module.exports = {
   name: "serverinfo",
   aliases: ["server", "stats", "serverstats", "guildinfo", "guildstats"],
-  description: "Says the info of the server where the message is sent in.",
+  description: "Shows some info about your server.",
   async execute(message, args, client) {
     const icon = message.guild.iconURL({ dynamic: true });
     const channels = message.guild.channels.cache;

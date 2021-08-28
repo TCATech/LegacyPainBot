@@ -4,7 +4,7 @@ const { Snake } = require("weky");
 module.exports = {
   name: "snek",
   aliases: ["snake"],
-  description: "Play snake in Discord!",
+  description: "Just your regular old snake, but in Discord!",
   async execute(message, args, client) {
     await Snake({
       message: message,
