@@ -98,6 +98,10 @@ The funniest bot that you will ever need.
 
 `>serverinfo` | Shows some info about your server.
 
+<br />
+
 ### Configuration
 
 `>prefix [new prefix]` | Changes the prefix of the bot.
+
+`>set-chatbot [#channel]` | Sets the chatbot channel so you can talk with PainBot!
