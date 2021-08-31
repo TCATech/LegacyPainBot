@@ -3,8 +3,8 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "loop",
   description: "Toggles loop.",
-  aliases: ["loops", "repeat", 'l', 'r'],
-  usage: '[song, queue, or off]',
+  aliases: ["loops", "repeat", "l", "r"],
+  usage: "[song, queue, or off]",
   async execute(message, args, client) {
     if (!message.member.voice.channel) {
       const loopError = new MessageEmbed()
@@ -50,7 +50,7 @@ module.exports = {
     mode = client.distube.setRepeatMode(message, mode);
     mode = mode ? (mode == 2 ? "Repeat queue" : "Repeat song") : "Off";
     const embed = new MessageEmbed()
-      .setTitle("Here we go.")
+      .setTitle("Here we go again.")
       .setDescription(`Set the loop mode to \`${mode}\`.`)
       .setColor(client.color)
       .setFooter(

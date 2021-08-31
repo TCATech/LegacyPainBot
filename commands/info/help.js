@@ -51,7 +51,7 @@ module.exports = {
         const cmds = commands
           .filter((command) => {
             let file = require(`../../commands/${dir}/${command}`);
-            const hide = file.hidden || file.wip
+            const hide = file.hidden || file.wip;
 
             return !hide;
           })
@@ -133,16 +133,16 @@ module.exports = {
         )
         .setColor(client.color)
         .setTimestamp();
-      if(command.usage) {
+      if (command.usage) {
         embed.setFooter(
-          '<> = Required | [] = Optional',
+          "<> = Required | [] = Optional",
           client.user.displayAvatarURL({ dynamic: true })
-        )
+        );
       } else {
         embed.setFooter(
           client.user.username,
           client.user.displayAvatarURL({ dynamic: true })
-        )
+        );
       }
       return message.channel.send(embed);
     }

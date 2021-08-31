@@ -20,23 +20,6 @@ module.exports = {
       )
       .setTimestamp();
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES"))
-      return message.channel.send(client.noperm);
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
-      return message.channel.send(
-        new MessageEmbed()
-          .setTitle("Oopsie Poopsie!")
-          .setDescription(
-            "I don't have permission to delete messages in this server. Please give me permission to do that!"
-          )
-          .setColor(client.color)
-          .setFooter(
-            client.user.username,
-            client.user.displayAvatarURL({ dynamic: true })
-          )
-          .setTimestamp()
-      );
-
     if (isNaN(amountToPurge))
       return message.reply("Please specify an actual number.");
 

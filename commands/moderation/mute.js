@@ -23,10 +23,6 @@ module.exports = {
       return message.reply(
         "That user is already muted. Please mention a user that isn't muted!"
       );
-    if (!role)
-      return message.reply(
-        "Seems like this server doesn'nt have a muted role. Please make a role called `Muted`."
-      );
     if (
       message.member.roles.highest.position <= member.roles.highest.permission
     )

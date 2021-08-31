@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "resume",
   description: "Resumes the song.",
-  aliases: ["resume", "unpause", 'r'],
+  aliases: ["resume", "unpause", "r"],
   async execute(message, args, client) {
     if (!message.member.voice.channel) {
       const resumeError = new MessageEmbed()

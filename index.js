@@ -1,4 +1,5 @@
 let Discord = require("discord.js");
+require("discord-reply");
 let client = new Discord.Client({
   disableEveryone: true,
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
@@ -16,9 +17,14 @@ const fs = require("fs");
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.categories = fs.readdirSync("./commands/");
-["commands"].forEach((handler) => {
+["commands", "features"].forEach((handler) => {
   require(`./handlers/${handler}`)(client);
 });
+
+//Top.gg API
+
+const { Api } = require("@top-gg/sdk");
+client.topgg = new Api(process.env.TopGG);
 
 client.error = (err) => {
   if (typeof err === "string")
@@ -30,6 +36,9 @@ client.error = (err) => {
 
 client.on("ready", () => {
   console.log(`${client.user.tag} is now online!`);
+  console.log(
+    `Watching ${client.guilds.cache.size} servers, ${client.channels.cache.size} channels, and ${client.users.cache.size} users.`
+  );
 
   client.user.setActivity(">help | PainBot.tk", {
     type: "LISTENING",
@@ -47,9 +56,9 @@ client.on("ready", () => {
 
 client.distube = new Distube(client, {
   searchSongs: true,
-  leaveOnFinish: false,
+  leaveOnFinish: true,
   leaveOnStop: false,
-  emitNewSongOnly: true,
+  emitNewSongsOnly: true,
 });
 
 client.distube.on("searchResult", (message, result) => {
@@ -73,8 +82,8 @@ client.distube.on("playSong", (message, queue, song) => {
   message.channel.startTyping();
   message.channel.send(
     new Discord.MessageEmbed()
-      .addField("Now playing", song.name)
-      .addField("Requester", song.user)
+      .setTitle("Now playing")
+      .setDescription(`[${song.name}](${song.url}) [${song.user}]`)
       .setColor(
         message.guild.me.displayHexColor === "#000000"
           ? "#ffffff"
@@ -91,7 +100,20 @@ client.distube.on("playSong", (message, queue, song) => {
 
 client.distube.on("addSong", (message, queue, song) => {
   message.channel.startTyping();
-  message.channel.send(`Added ${song.name} to the queue.`);
+  message.channel.send(
+    new Discord.MessageEmbed()
+      .setDescription(`Queued [${song.name}](${song.url}) [${song.user}]`)
+      .setColor(
+        message.guild.me.displayHexColor === "#000000"
+          ? "#ffffff"
+          : message.guild.me.displayHexColor
+      )
+      .setFooter(
+        client.user.username,
+        client.user.displayAvatarURL({ dynamic: true })
+      )
+      .setTimestamp()
+  );
   message.channel.stopTyping();
 });
 
@@ -107,30 +129,6 @@ client.on("message", async (message) => {
     message.guild.me.displayHexColor === "#000000"
       ? "#ffffff"
       : message.guild.me.displayHexColor;
-
-  client.noperm = new Discord.MessageEmbed()
-    .setTitle("Oopsie Poopsie!")
-    .setDescription(
-      `You don't have permission to use that command as you are not a staff member.`
-    )
-    .setColor(client.color)
-    .setFooter(
-      client.user.username,
-      client.user.displayAvatarURL({ dynamic: true })
-    )
-    .setTimestamp();
-
-  client.oopsiepoopsie = new Discord.MessageEmbed()
-    .setTitle("Oopsie Poopsie!")
-    .setDescription(
-      `Seems like something went wrong on my end. Please try again!`
-    )
-    .setColor(client.color)
-    .setFooter(
-      client.user.username,
-      client.user.displayAvatarURL({ dynamic: true })
-    )
-    .setTimestamp();
 
   const data = await prefix.findOne({
     GuildID: message.guild.id,
@@ -152,9 +150,12 @@ client.on("message", async (message) => {
   const command =
     client.commands.get(cmd) ||
     client.commands.find((a) => a.aliases && a.aliases.includes(cmd));
-  if(command.wip && message.author.id !== client.config.ownerID) return message.reply('This command is currently a **W**ork **I**n **P**rogress.')
 
   if (!command) return message.delete();
+  if (command.wip && message.author.id !== client.config.ownerID)
+    return message.reply(
+      "This command is currently a **W**ork **I**n **P**rogress."
+    );
   if (
     command.userPerms &&
     !message.member.hasPermission(command.userPerms || [])
@@ -207,16 +208,6 @@ client.on("message", async (message) => {
     );
 
   command.execute(message, args, client);
-});
-
-client.on("voiceStateUpdate", (oldState, newState) => {
-  if (
-    oldState.channelID !== oldState.guild.me.voice.channelID ||
-    newState.channel
-  )
-    return;
-
-  if (oldState.channel.members.size === 1) oldState.channel.leave();
 });
 
 client.login(process.env.token);

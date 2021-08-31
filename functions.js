@@ -1,4 +1,4 @@
-const { words } = require("./words")
+const { words } = require("./words");
 
 module.exports = {
   promptMessage: async function (message, author, time, validReactions) {
@@ -18,11 +18,11 @@ module.exports = {
       .awaitReactions(filter, { max: 1, time: time })
       .then((collected) => collected.first() && collected.first().emoji.name);
   },
-  getRandomWord: function(length) {
-		const word = [];
-		for (let i = 0; i < length; i++) {
-			word.push(words[Math.floor(Math.random() * words.length)]);
-		}
-		return word;
-	},
+  getRandomWord: function (length) {
+    const word = [];
+    for (let i = 0; i < length; i++) {
+      word.push(words[Math.floor(Math.random() * words.length)]);
+    }
+    return word;
+  },
 };
