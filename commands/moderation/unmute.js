@@ -27,7 +27,7 @@ module.exports = {
         "Seems like this server doesn'nt have a muted role. Please make a role called `Muted`."
       );
     if (
-      message.member.roles.highest.position <= member.roles.highest.permission
+      message.member.roles.highest.position <= target.roles.highest.permission
     )
       return message.reply("You are not allowed to mute that user.");
 

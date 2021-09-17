@@ -3,7 +3,7 @@ require("discord-reply");
 let client = new Discord.Client({
   disableEveryone: true,
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
-  restTimeOffset: 0,
+  restTimeOffset: 0
 });
 require("discord-buttons")(client);
 require("dotenv").config();
@@ -150,64 +150,65 @@ client.on("message", async (message) => {
   const command =
     client.commands.get(cmd) ||
     client.commands.find((a) => a.aliases && a.aliases.includes(cmd));
+  if (command) {
+    if (command.wip && message.author.id !== client.config.ownerID)
+      return message.reply(
+        "This command is currently a **W**ork **I**n **P**rogress."
+      );
 
-  if (!command) return message.delete();
-  if (command.wip && message.author.id !== client.config.ownerID)
-    return message.reply(
-      "This command is currently a **W**ork **I**n **P**rogress."
-    );
-  if (
-    command.userPerms &&
-    !message.member.hasPermission(command.userPerms || [])
-  )
-    return message.channel.send(
-      new Discord.MessageEmbed()
-        .setTitle("Oopsie Poopsie!")
-        .setDescription(
-          `You need the following permissions to use this command: \`${command.userPerms
-            .map(
-              (value) =>
-                `${
-                  value[0].toUpperCase() +
+    if (
+      command.userPerms &&
+      !message.member.hasPermission(command.userPerms)
+    )
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setTitle("Oopsie Poopsie!")
+          .setDescription(
+            `You need the following permissions to use this command: \`${command.userPerms
+              .map(
+                (value) =>
+                  `${value[0].toUpperCase() +
                   value.toLowerCase().slice(1).replace(/_/gi, " ")
-                }`
-            )
-            .join(", ")}\``
-        )
-        .setColor(client.color)
-        .setFooter(
-          client.user.username,
-          client.user.displayAvatarURL({ dynamic: true })
-        )
-        .setTimestamp()
-    );
-  if (
-    command.botPerms &&
-    !message.guild.me.hasPermission(command.botPerms || [])
-  )
-    return message.channel.send(
-      new Discord.MessageEmbed()
-        .setTitle("Oopsie Poopsie!")
-        .setDescription(
-          `Please give me the following permissions: \`${command.botPerms
-            .map(
-              (value) =>
-                `${
-                  value[0].toUpperCase() +
+                  }`
+              )
+              .join(", ")}\``
+          )
+          .setColor(client.color)
+          .setFooter(
+            client.user.username,
+            client.user.displayAvatarURL({ dynamic: true })
+          )
+          .setTimestamp()
+      );
+    if (
+      command.botPerms &&
+      !message.guild.me.hasPermission(command.botPerms)
+    )
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setTitle("Oopsie Poopsie!")
+          .setDescription(
+            `Please give me the following permissions: \`${command.botPerms
+              .map(
+                (value) =>
+                  `${value[0].toUpperCase() +
                   value.toLowerCase().slice(1).replace(/_/gi, " ")
-                }`
-            )
-            .join(", ")}\``
-        )
-        .setColor(client.color)
-        .setFooter(
-          client.user.username,
-          client.user.displayAvatarURL({ dynamic: true })
-        )
-        .setTimestamp()
-    );
+                  }`
+              )
+              .join(", ")}\``
+          )
+          .setColor(client.color)
+          .setFooter(
+            client.user.username,
+            client.user.displayAvatarURL({ dynamic: true })
+          )
+          .setTimestamp()
+      );
 
-  command.execute(message, args, client);
+    command.execute(message, args, client);
+  } else {
+    return message.delete();
+  }
 });
 
 client.login(process.env.token);

@@ -10,8 +10,7 @@ module.exports = (client) => {
       },
       async (err, data) => {
         if (err) console.log(err);
-        if (!data) return;
-        if (message.channel.id !== data.Channel) return;
+        if (!data || message.channel.id !== data.Channel) return;
         fetch
           .default(
             `https://api.monkedev.com/fun/chat?msg=${message.content}&uid=${message.guild.id}`

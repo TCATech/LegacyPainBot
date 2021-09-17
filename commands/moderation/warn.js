@@ -1,4 +1,5 @@
 const warns = require("../../models/warns");
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
   name: "warn",
@@ -30,8 +31,14 @@ module.exports = {
           });
 
           newWarns.save();
-          message.reply(
-            `${user.user.tag} has successfully been warned with the reason of \`${reason}\`. They now have 1 warn.`
+          message.channel.send(
+            new MessageEmbed()
+            .setTitle(':warning: Wee woo! :warning:')
+            .setDescription(`${user.user.username} has successfully been warned. They now have 1 warn.`)
+            .addField('Reason', reason)
+            .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
+            .setColor(client.color)
+            .setTimestamp()
           );
         } else {
           data.Warns.unshift({
@@ -39,8 +46,14 @@ module.exports = {
             Reason: reason,
           });
           data.save();
-          message.reply(
-            `${user.user.tag} has successfully been warned with the reason of \`${reason}\`. They now have ${data.Warns.length} warn.`
+          message.channel.send(
+            new MessageEmbed()
+            .setTitle(':warning: Wee woo! :warning:')
+            .setDescription(`${user.user.username} has successfully been warned. They now have ${data.Warns.length} warn.`)
+            .addField('Reason', reason)
+            .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
+            .setColor(client.color)
+            .setTimestamp()
           );
         }
       }

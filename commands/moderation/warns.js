@@ -23,16 +23,13 @@ module.exports = {
           );
         message.channel.send(
           new MessageEmbed()
-            .setTitle(`${user.user.tag}'s Warns`)
+            .setAuthor(user.user.tag, user.user.displayAvatarURL({ dynamic: true }))
+            .setTitle(`Warns`)
             .setDescription(
               data.map((d) => {
                 return d.Warns.map(
                   (w, i) =>
-                    `${i++} - Moderator: ${
-                      message.guild.members.cache.find(
-                        (m) => m.user.id === w.Moderator
-                      ).user.tag
-                    } | Reason: ${w.Reason}`
+                    `${++i}. Moderator: <@${w.Moderator}> | Reason: ${w.Reason}`
                 ).join("\n");
               })
             )

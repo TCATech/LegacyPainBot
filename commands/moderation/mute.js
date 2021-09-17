@@ -24,7 +24,7 @@ module.exports = {
         "That user is already muted. Please mention a user that isn't muted!"
       );
     if (
-      message.member.roles.highest.position <= member.roles.highest.permission
+      message.member.roles.highest.position <= target.roles.highest.permission
     )
       return message.reply("You are not allowed to mute that user.");
 
