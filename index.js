@@ -3,12 +3,11 @@ require("discord-reply");
 let client = new Discord.Client({
   disableEveryone: true,
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
-  restTimeOffset: 0
+  restTimeOffset: 0,
 });
 require("discord-buttons")(client);
 require("dotenv").config();
-const server = require("./server.js");
-const Distube = require("distube");
+const keepAlive = require("./server.js");
 
 client.config = require("./config.json");
 const prefix = require("./models/prefix");
@@ -17,7 +16,7 @@ const fs = require("fs");
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.categories = fs.readdirSync("./commands/");
-["commands", "features"].forEach((handler) => {
+["commands"].forEach((handler) => {
   require(`./handlers/${handler}`)(client);
 });
 
@@ -35,10 +34,13 @@ client.error = (err) => {
 };
 
 client.on("ready", () => {
+  require('./handlers/features')(client)
   console.log(`${client.user.tag} is now online!`);
   console.log(
     `Watching ${client.guilds.cache.size} servers, ${client.channels.cache.size} channels, and ${client.users.cache.size} users.`
   );
+
+  keepAlive();
 
   client.user.setActivity(">help | PainBot.tk", {
     type: "LISTENING",
@@ -52,69 +54,6 @@ client.on("ready", () => {
       useFindAndModify: false,
     })
     .then(console.log("Successfully connected to MongoDB"));
-});
-
-client.distube = new Distube(client, {
-  searchSongs: true,
-  leaveOnFinish: true,
-  leaveOnStop: false,
-  emitNewSongsOnly: true,
-});
-
-client.distube.on("searchResult", (message, result) => {
-  message.channel.startTyping();
-  let i = 0;
-  message.channel.send(
-    `**Choose an option from below:**\n${result
-      .map((song) => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``)
-      .join("\n")}\n\n*Enter anything else or wait 60 seconds to cancel*`
-  );
-  message.channel.stopTyping();
-});
-
-client.distube.on("searchCancel", (message) => {
-  message.channel.startTyping();
-  message.channel.send(`Search canceled`);
-  message.channel.stopTyping();
-});
-
-client.distube.on("playSong", (message, queue, song) => {
-  message.channel.startTyping();
-  message.channel.send(
-    new Discord.MessageEmbed()
-      .setTitle("Now playing")
-      .setDescription(`[${song.name}](${song.url}) [${song.user}]`)
-      .setColor(
-        message.guild.me.displayHexColor === "#000000"
-          ? "#ffffff"
-          : message.guild.me.displayHexColor
-      )
-      .setFooter(
-        client.user.username,
-        client.user.displayAvatarURL({ dynamic: true })
-      )
-      .setTimestamp()
-  );
-  message.channel.stopTyping();
-});
-
-client.distube.on("addSong", (message, queue, song) => {
-  message.channel.startTyping();
-  message.channel.send(
-    new Discord.MessageEmbed()
-      .setDescription(`Queued [${song.name}](${song.url}) [${song.user}]`)
-      .setColor(
-        message.guild.me.displayHexColor === "#000000"
-          ? "#ffffff"
-          : message.guild.me.displayHexColor
-      )
-      .setFooter(
-        client.user.username,
-        client.user.displayAvatarURL({ dynamic: true })
-      )
-      .setTimestamp()
-  );
-  message.channel.stopTyping();
 });
 
 client.on("message", async (message) => {
@@ -156,10 +95,7 @@ client.on("message", async (message) => {
         "This command is currently a **W**ork **I**n **P**rogress."
       );
 
-    if (
-      command.userPerms &&
-      !message.member.hasPermission(command.userPerms)
-    )
+    if (command.userPerms && !message.member.hasPermission(command.userPerms))
       return message.channel.send(
         new Discord.MessageEmbed()
           .setTitle("Oopsie Poopsie!")
@@ -167,8 +103,9 @@ client.on("message", async (message) => {
             `You need the following permissions to use this command: \`${command.userPerms
               .map(
                 (value) =>
-                  `${value[0].toUpperCase() +
-                  value.toLowerCase().slice(1).replace(/_/gi, " ")
+                  `${
+                    value[0].toUpperCase() +
+                    value.toLowerCase().slice(1).replace(/_/gi, " ")
                   }`
               )
               .join(", ")}\``
@@ -180,10 +117,7 @@ client.on("message", async (message) => {
           )
           .setTimestamp()
       );
-    if (
-      command.botPerms &&
-      !message.guild.me.hasPermission(command.botPerms)
-    )
+    if (command.botPerms && !message.guild.me.hasPermission(command.botPerms))
       return message.channel.send(
         new Discord.MessageEmbed()
           .setTitle("Oopsie Poopsie!")
@@ -191,8 +125,9 @@ client.on("message", async (message) => {
             `Please give me the following permissions: \`${command.botPerms
               .map(
                 (value) =>
-                  `${value[0].toUpperCase() +
-                  value.toLowerCase().slice(1).replace(/_/gi, " ")
+                  `${
+                    value[0].toUpperCase() +
+                    value.toLowerCase().slice(1).replace(/_/gi, " ")
                   }`
               )
               .join(", ")}\``
