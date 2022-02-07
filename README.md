@@ -2,6 +2,10 @@
 
 The funniest bot that you will ever need.
 
+# Note
+
+This repository is no longer maintained. Please check [the v2 repository](https://github.com/NotTCA/PainBot) for updated code.
+
 # Features
 
 - Moderation: Kick some people out of your server, or maybe just mute them instead.
