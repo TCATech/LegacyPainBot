@@ -4,7 +4,7 @@ The funniest bot that you will ever need.
 
 # Note
 
-This repository is no longer maintained. Please check [the v2 repository](https://github.com/NotTCA/PainBot) for updated code.
+This repository is no longer maintained. Please check [the new repository](https://github.com/TCATech/PainBot) for updated code.
 
 # Features
 
